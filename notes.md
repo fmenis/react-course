@@ -8,3 +8,4 @@
 - components will be executed only once
 - hooks must be called in the top level component function (neither inside a if statement)
 - useState is very important because handle same data stored by react which when change will trigger the component to execute again
+- add the `key` attribute to a component that will be rendered dynamically. The value of that attribute must be something unique; this is used by react to uniquely identify every element of the list

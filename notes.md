@@ -16,3 +16,5 @@
 - come prop di un componente può essere passato anche un altro componente
 - un wrapper component è un custom component generico costruito attorno ad un elemento html che ha dei signoficati. Se nella nostra app tutti le section sono fatte in un corto modo (hanno dentro sempre gli stessi elementi html) e hanno lo stesso stile, posso pensare di fare un wrapper component attorno al elemento section. Non fare wrapper component per partito preso, solo se aggiunge del valore (hanno sempre lo stesso stile, struttura, comportamentos)
 - non serve mettere per forza tutto l'HTML nei componenti. Se c'è un pezzo di UI statica, che non cambia a seconda di nessuno stato e per la quale non occorre interagirci, basta metterla nel file index.html (tipo un header statico)
+- i componenti sono completamente isolati tra loro
+- aggiornare lo stato di array o oggetti in modo immutabile, creandone di nuovi rispetto ai precedenti

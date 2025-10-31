@@ -40,7 +40,7 @@ export default function Examples() {
 
   return (
     <Section id="examples" title="Examples">
-      <Tabs buttons={tabButtons}>
+      <Tabs ButtonsContainer="menu" buttons={tabButtons}>
         <div id="tab-content">{tabContent}</div>
       </Tabs>
     </Section>

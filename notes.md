@@ -12,3 +12,6 @@
 - is possible to not use `jsx` format to create react applications, so the code don't have to be transformed by the build process. But it's not convenient, because the code that have to be use to is more verbose and difficult.
 - use the `Fragment` component when you will return (from another component) more than one value and you don't want to add an extra div. This because is js is not allowed to return multiple values from a function
 - if a component is executed again (for the right reasons) but cause the execution of other components that shouldn't be executed again, is a sign of poor component design. Split the components for feature
+- le proprietà che vengono assegnate ad un custom componente non vengono automaticamente passate nel codice jsx che viene utilizzato un quel componente. Devono essere settate manulamente
+- come prop di un componente può essere passato anche un altro componente
+- un wrapper component è un custom component generico costruito attorno ad un elemento html che ha dei signoficati. Se nella nostra app tutti le section sono fatte in un corto modo (hanno dentro sempre gli stessi elementi html) e hanno lo stesso stile, posso pensare di fare un wrapper component attorno al elemento section. Non fare wrapper component per partito preso, solo se aggiunge del valore (hanno sempre lo stesso stile, struttura, comportamentos)

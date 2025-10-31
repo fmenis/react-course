@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { EXAMPLES, CORE_CONCEPTS } from "../data.js";
 import TabButton from "./TabButton.jsx";
+import Section from "./Section.jsx";
+import Tabs from "./Tabs.jsx";
 
 export default function Examples() {
   const [selectedTopic, setSelectedTopic] = useState(); // initial state
@@ -15,7 +17,7 @@ export default function Examples() {
     return (
       <TabButton
         isSelected={selectedTopic === concept.label}
-        onSelect={() => handleSelect(concept.label)}
+        onClick={() => handleSelect(concept.label)}
         key={concept.label}
       >
         {concept.title}
@@ -37,10 +39,10 @@ export default function Examples() {
   );
 
   return (
-    <section id="examples">
-      <h2>Examples</h2>
-      <menu>{tabButtons}</menu>
-      <div id="tab-content">{tabContent}</div>
-    </section>
+    <Section id="examples" title="Examples">
+      <Tabs buttons={tabButtons}>
+        <div id="tab-content">{tabContent}</div>
+      </Tabs>
+    </Section>
   );
 }

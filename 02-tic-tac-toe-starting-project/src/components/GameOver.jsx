@@ -1,4 +1,4 @@
-export default function GameOver({ winnerPlayerSymbol }) {
+export default function GameOver({ winnerPlayerSymbol, onRestartGame }) {
   return (
     <div id="game-over">
       <h2>Game Over!</h2>
@@ -6,7 +6,7 @@ export default function GameOver({ winnerPlayerSymbol }) {
       {!winnerPlayerSymbol && <p>It's a draw</p>}
 
       <p>
-        <button>Rematch!</button>
+        <button onClick={onRestartGame}>Rematch!</button>
       </p>
     </div>
   );

@@ -15,6 +15,15 @@ function App() {
 
   function handleSelectSquare(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
+      const isAlreadySet = gameTurns.some(
+        (turn) => turn.square.row === rowIndex && turn.square.col === colIndex
+      );
+
+      if (isAlreadySet) {
+        console.log("Action not allowed");
+        return prevTurns;
+      }
+
       const turn = {
         activePlayerSymbol,
         square: {

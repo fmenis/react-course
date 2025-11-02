@@ -7,6 +7,7 @@ const initialGameBoard = [
 export default function GameBoard({ onSelectSquare, turns }) {
   let gameBoard = initialGameBoard;
 
+  // populate gameBoard through turn logs
   for (const turn of turns) {
     const { activePlayerSymbol, square } = turn;
     const { row, col } = square;

@@ -5,25 +5,11 @@ import Player from "./components/Player.jsx";
 import Log from "./components/Log.jsx";
 
 function App() {
-  const turns = [];
-  const [gameTurns, setGameTurns] = useState(turns);
-
-  let activePlayerSymbol = "X";
-  if (gameTurns.length && gameTurns[0].activePlayerSymbol === "X") {
-    activePlayerSymbol = "O";
-  }
+  const [gameTurns, setGameTurns] = useState([]);
+  const activePlayerSymbol = deriveActivePlayerSymbol(gameTurns);
 
   function handleSelectSquare(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
-      const isAlreadySet = gameTurns.some(
-        (turn) => turn.square.row === rowIndex && turn.square.col === colIndex
-      );
-
-      if (isAlreadySet) {
-        console.log("Action not allowed");
-        return prevTurns;
-      }
-
       const turn = {
         activePlayerSymbol,
         square: {
@@ -58,6 +44,15 @@ function App() {
       <Log turns={gameTurns} />
     </main>
   );
+}
+
+function deriveActivePlayerSymbol(gameTurns) {
+  let activePlayerSymbol = "X";
+  if (gameTurns.length && gameTurns[0].activePlayerSymbol === "X") {
+    activePlayerSymbol = "O";
+  }
+
+  return activePlayerSymbol;
 }
 
 export default App;

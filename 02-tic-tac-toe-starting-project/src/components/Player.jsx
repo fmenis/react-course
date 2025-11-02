@@ -4,6 +4,7 @@ export default function Player({
   initialName,
   symbol,
   isActive,
+  turns,
   onChangeName,
 }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -22,14 +23,23 @@ export default function Player({
   }
 
   function handleChange(changeEvent) {
-    setPlayerName(changeEvent.target.value);
+    const name = changeEvent.target.value;
+
+    setPlayerName(name);
   }
 
-  const editablePlayerName = isEditing ? (
-    <input type="text" required value={playerName} onChange={handleChange} />
-  ) : (
-    <span className="player-name">{playerName}</span>
-  );
+  const editablePlayerName =
+    isEditing && turns.length === 0 ? (
+      <input
+        type="text"
+        required
+        placeholder={playerName}
+        autoFocus
+        onChange={handleChange}
+      />
+    ) : (
+      <span className="player-name">{playerName}</span>
+    );
 
   return (
     <li className={isActive ? "active" : undefined}>
@@ -38,7 +48,12 @@ export default function Player({
 
         <span className="player-symbol">{symbol}</span>
       </span>
-      <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
+      <button
+        onClick={handleEditClick}
+        className={turns.length ? "hidden" : undefined}
+      >
+        {isEditing ? "Save" : "Edit"}
+      </button>
     </li>
   );
 }

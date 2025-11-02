@@ -56,12 +56,14 @@ function App() {
             initialName={PLAYERS.X}
             symbol={"X"}
             isActive={activePlayerSymbol === "X"}
+            turns={gameTurns}
             onChangeName={handlePlayerNameChange}
           />
           <Player
             initialName={PLAYERS.O}
             symbol={"O"}
             isActive={activePlayerSymbol === "O"}
+            turns={gameTurns}
             onChangeName={handlePlayerNameChange}
           />
         </ol>

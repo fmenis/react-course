@@ -6,10 +6,10 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export default function GameBoard() {
+export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
-  function handleSelectSquare(rowIndex, colIndex, symbol = "X") {
+  function handleSelectSquare(rowIndex, colIndex) {
     setGameBoard((prevGameBoard) => {
       /**
        * updating state of array or object is a immutable way!
@@ -18,10 +18,13 @@ export default function GameBoard() {
       const updatedBoard = [
         ...prevGameBoard.map((innerArray) => [...innerArray]),
       ];
-      updatedBoard[rowIndex][colIndex] = symbol;
-      console.log(updatedBoard);
+
+      updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
+
       return updatedBoard;
     });
+
+    onSelectSquare();
   }
 
   return (

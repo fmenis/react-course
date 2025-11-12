@@ -2,97 +2,36 @@ import { useState } from "react";
 
 import Header from "./components/Header.jsx";
 import UserInput from "./components/UserInput.jsx";
-import Result from "./components/Result.jsx";
-
-import { calculateInvestmentResults } from "./util/investment.js";
-
-const initialValues = {
-  initialInvestment: 10000,
-  annualInvestment: 1200,
-  expectedReturn: 6,
-  duration: 10,
-};
-
-const initialResults = calculateInvestmentResults(initialValues);
-console.log(initialResults);
+import Results from "./components/Results.jsx";
 
 function App() {
-  const [results, setResults] = useState(initialResults);
+  const [userInputs, setUserInput] = useState({
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
+  });
 
-  function handleChangeValue({ label, value }) {
-    console.log(label);
-    console.log(value);
-
-    let values = { ...initialValues };
-
-    if (label === "initial investment") {
-      values = {
-        ...values,
-        initialInvestment: value,
+  function handleChange(inputId, newValue) {
+    setUserInput((prevUserInputs) => {
+      return {
+        ...prevUserInputs,
+        [inputId]: Number(newValue),
       };
-    }
-
-    if (label === "annual investment") {
-      values = {
-        ...values,
-        annualInvestment: value,
-      };
-    }
-
-    if (label === "expected return") {
-      values = {
-        ...values,
-        expectedReturn: value,
-      };
-    }
-
-    if (label === "initial investment") {
-      values = {
-        ...values,
-        duration: value,
-      };
-    }
-
-    setResults((prevResults) => {
-      const results = calculateInvestmentResults(initialValues);
-      console.log(results);
-      return results;
     });
   }
+
+  const isValidInput = userInputs.duration > 0;
 
   return (
     <>
       <Header />
-      <main>
-        <section id="user-input">
-          <ul>
-            <UserInput
-              label="initial investment"
-              initialValue={initialValues.initialInvestment}
-              onChangeValue={handleChangeValue}
-            />
-            <UserInput
-              label="annual investment"
-              initialValue={initialValues.annualInvestment}
-              onChangeValue={handleChangeValue}
-            />
-            <UserInput
-              label="expected return"
-              initialValue={initialValues.expectedReturn}
-              onChangeValue={handleChangeValue}
-            />
-            <UserInput
-              label="duration"
-              initialValue={initialValues.duration}
-              onChangeValue={handleChangeValue}
-            />
-          </ul>
-        </section>
-
-        <section id="result">
-          <Result />
-        </section>
-      </main>
+      <UserInput userInputs={userInputs} onChangeInput={handleChange} />
+      {isValidInput ? (
+        <Results userInputs={userInputs} />
+      ) : (
+        <p className="center">Please enter a duration greater than zero.</p>
+      )}
     </>
   );
 }

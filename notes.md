@@ -18,3 +18,4 @@
 - non serve mettere per forza tutto l'HTML nei componenti. Se c'è un pezzo di UI statica, che non cambia a seconda di nessuno stato e per la quale non occorre interagirci, basta metterla nel file index.html (tipo un header statico)
 - i componenti sono completamente isolati tra loro
 - aggiornare lo stato di array o oggetti in modo immutabile, creandone di nuovi rispetto ai precedenti
+- quando i dati di due componenti fratelli devono interagire, spostare la gestione dello stato nel componente padre

@@ -7,8 +7,6 @@ import Tabs from "./Tabs.jsx";
 export default function Examples() {
   const [selectedTopic, setSelectedTopic] = useState(); // initial state
 
-  console.log("Examples component rendered");
-
   // update the state and execute again the component
   function handleSelect(selectedButton) {
     setSelectedTopic(selectedButton);

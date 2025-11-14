@@ -7,6 +7,12 @@ export default function Player() {
 
   function handleClick() {
     setEnteredPlayerName(playerName.current.value);
+    /**
+     * This line is a imperative code, not a declarative.
+     * So, it saved a lot of code, but be careful because it's not
+     * the idea with the use of react
+     */
+    playerName.current.value = "";
   }
 
   return (

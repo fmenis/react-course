@@ -10,3 +10,5 @@ Uno degli utilizzi è quello di prendere il valore di un elemento solo quando se
 Quando il ref cambia il componente non viene eseguito di nuovo! Esattamente il contrario dello state.
 
 È possibile anche utilizzare `ref` per gestire qualsiasi tipo di valore, non solo attaccarlo ad un elemento html. Ref gestirà quel valore che sarà "component specific" e non uguale per ogni instanza del componente.
+
+È possibile anche passare `ref` tra diversi componenti. Aggiungere la keyword `ref` nel componente e passare l'istanza di ref che vogliamo gestire. NB: funziona solo da react 19!! Sennò occorre usare forwarrdRef

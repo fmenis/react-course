@@ -12,13 +12,15 @@ import NoProjectSelected from "./components/NoProjectSelected.jsx";
  */
 
 function App() {
-  const [projectsState, setProjectsSTate] = useState({
+  const [projectStates, setProjectStates] = useState({
     selectedProjectId: undefined,
     projects: [],
   });
 
+  console.log(projectStates);
+
   function handleStartAddProject() {
-    setProjectsSTate((provProjectsState) => {
+    setProjectStates((provProjectsState) => {
       return {
         ...provProjectsState,
         selectedProjectId: null,
@@ -26,17 +28,33 @@ function App() {
     });
   }
 
+  function handleAddProject(projectData) {
+    setProjectStates((provProjectsState) => {
+      const newProject = {
+        ...projectData,
+        id: Math.random().toString(),
+      };
+      return {
+        selectedProjectId: newProject.id,
+        projects: [...provProjectsState.projects, newProject],
+      };
+    });
+  }
+
   let content;
 
-  if (projectsState.selectedProjectId === null) {
-    content = <NewProject />;
-  } else if (projectsState.selectedProjectId === undefined) {
+  if (projectStates.selectedProjectId === null) {
+    content = <NewProject onAddProject={handleAddProject} />;
+  } else if (projectStates.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
 
   return (
     <main className="h-screen my-8 flex gap-8 ">
-      <ProjectSidebar onStartAddProject={handleStartAddProject} />
+      <ProjectSidebar
+        onStartAddProject={handleStartAddProject}
+        projects={projectStates.projects}
+      />
       {content}
     </main>
   );

@@ -35,8 +35,17 @@ function App() {
         id: Math.random().toString(),
       };
       return {
-        selectedProjectId: newProject.id,
+        selectedProjectId: undefined,
         projects: [...provProjectsState.projects, newProject],
+      };
+    });
+  }
+
+  function handleCancelProject() {
+    setProjectStates((provProjectsState) => {
+      return {
+        ...provProjectsState,
+        selectedProjectId: undefined,
       };
     });
   }
@@ -44,7 +53,12 @@ function App() {
   let content;
 
   if (projectStates.selectedProjectId === null) {
-    content = <NewProject onAddProject={handleAddProject} />;
+    content = (
+      <NewProject
+        onAddProject={handleAddProject}
+        onCancelProject={handleCancelProject}
+      />
+    );
   } else if (projectStates.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }

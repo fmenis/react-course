@@ -102,6 +102,9 @@ function App() {
         ...prevState,
         selectedProjectId: lastProjectId,
         projects: filteredProjects,
+        tasks: prevState.tasks.filter(
+          (task) => task.projectId !== selectedProjectId
+        ),
       };
     });
   }
@@ -139,6 +142,7 @@ function App() {
         onStartAddProject={handleStartAddProject}
         onSelectProject={handleSelectProject}
         projects={projectStates.projects}
+        selectedProjectId={projectStates.selectedProjectId}
       />
       {content}
     </main>

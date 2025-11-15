@@ -28,36 +28,53 @@ function App() {
   }
 
   function handleAddProject(projectData) {
-    setProjectStates((provProjectsState) => {
+    setProjectStates((prevState) => {
       const newProject = {
         ...projectData,
         id: Math.random().toString(),
       };
       return {
         selectedProjectId: newProject.id,
-        projects: [...provProjectsState.projects, newProject],
+        projects: [...prevState.projects, newProject],
       };
     });
   }
 
   function handleSelectProject(selectedProjectId) {
-    setProjectStates((provProjectsState) => {
+    setProjectStates((prevState) => {
       return {
-        ...provProjectsState,
+        ...prevState,
         selectedProjectId: selectedProjectId,
       };
     });
   }
 
   function handleCancelProject() {
-    setProjectStates((provProjectsState) => {
-      const lastProjectId = provProjectsState.projects.length
-        ? provProjectsState.projects[provProjectsState.projects.length - 1]
+    setProjectStates((prevState) => {
+      const lastProjectId = prevState.projects.length
+        ? prevState.projects[prevState.projects.length - 1].id
         : undefined;
 
       return {
-        ...provProjectsState,
+        ...prevState,
         selectedProjectId: lastProjectId,
+      };
+    });
+  }
+
+  function handleDeleteProject(selectedProjectId) {
+    setProjectStates((prevState) => {
+      const filteredProjects = prevState.projects.filter(
+        (project) => project.id !== selectedProjectId
+      );
+
+      const lastProjectId = filteredProjects.length
+        ? filteredProjects[filteredProjects.length - 1].id
+        : undefined;
+
+      return {
+        selectedProjectId: lastProjectId,
+        projects: filteredProjects,
       };
     });
   }
@@ -65,7 +82,12 @@ function App() {
   const selectedProject = projectStates.projects.find(
     (project) => project.id === projectStates.selectedProjectId
   );
-  let content = <SelectedProject project={selectedProject} />;
+  let content = (
+    <SelectedProject
+      project={selectedProject}
+      onDeleteProject={handleDeleteProject}
+    />
+  );
 
   if (projectStates.selectedProjectId === null) {
     content = (

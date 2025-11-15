@@ -59,4 +59,6 @@ Importare il context component nel componente dove occorrono i dati e utilizzare
 const cartCtx = useContext(CartContext);
 ```
 
-La differenza tra `useContext` e `use` è che quest'ultimo è più versatile, può essere utilizzato dentor if, for, ecc. Normalmente un hood non può essere utilizzato così. `Use` è disponibile solo dalla v 19
+La differenza tra `useContext` e `use` è che quest'ultimo è più versatile, può essere utilizzato dentor if, for, ecc. Normalmente un hood non può essere utilizzato così. `Use` è disponibile solo dalla v 19.
+
+Quando si accede ad un valore di contesto (tramite lo use context) all'interno di un componente e quel valore cambia la funzione del compoente che accede a quel valore viene rieseguita. Esattamente come succede se un cambia un valore dello stato oppure se il parent component viene rieseguito.
